@@ -1,0 +1,41 @@
+* Lesson 1
+[2016-07-29 Fri 15:11]
+** Supervised learning
+[2016-07-29 Fri 14:35]
+Supervised learning -- means that the right answers have been given. Task is to then take new input and figure out the right price.
+*** regression
+[2016-07-29 Fri 14:39]
+ontinuous valued problem.
+*** classification
+[2016-07-29 Fri 14:39]
+Discrete valued output.
+** Unsupervised learning
+[2016-07-29 Fri 14:45]
+Have a data set, and asked to find structure in it. Use of octave for class exercises. 
+*** Clustering algorightms
+[2016-07-29 Fri 14:46]
+* Lesson 2
+[2016-07-29 Fri 15:12]
+** Model representation
+[2016-07-29 Fri 15:36]
+Training set. x's - input variables. y's - output variables. m - number of training examples. (x, y) to denote one training example. (x^(i), y^(i)) to refer to the ith training example.
+
+Training set -> learning algorithm -> hypothesis
+
+size of house -> hypothesis -> estimated price
+
+hypothesis maps x's to y's. Univariate linear regression - linear regression with one variable.
+** Cost function
+[2016-07-29 Fri 15:36]
+h_{\theta}(x) = \theta_{0} + \theta_{1} * x as our univariate linear regression function. How do we figure out what the various {\theta}s are? Minimization problem, make the difference between h_{\theta}(x) and y (the real result) as small as possible. Cost function J(\theta_{0}, \theta_{1}) = \frac{1}{2m} \sum_{i = i}^{m}(h_{\theta}(x)^(i) - y^(i))^{2} -- squared error cost function. 
+** Cost function -- Intuition I
+[2016-07-29 Fri 15:44]
+Case where we set \theta_{0} to 0 -- solutions that pass through the origin. For now, assume our data set is (1,1), (2,2), (3,3). Have plot for our (x, y) data, but what if we start to plot (\theta_{1}, J(\theta_{1}))? Get a parabola, min at (0, 1).
+** Cost function -- Intuition II
+[2016-07-29 Fri 15:55]
+Contour plots. Now, what if we don't look at just one parameter, but look at two parameters? 3D surface plot. \theta_{0}, \theta_{1} are the x/y, and z becomes J(\theta_{0}, \theta_{1}). Contour plots are a 2D representation.
+* Lesson 3
+[2016-07-29 Fri 16:03]
+** Gradient descent
+[2016-07-29 Fri 16:03]
+Start with some initial guesses for \theta_{0} and \theta_{1}, then keep changing until we hopefully end up at a minimum. Imagine starting on a hill, looking all around and then taking a baby step to try and get downhill as quickly as possible, then repeat. Depending on where you start you can get to a completely different endpoint. 
