@@ -38,4 +38,15 @@ Contour plots. Now, what if we don't look at just one parameter, but look at two
 [2016-07-29 Fri 16:03]
 ** Gradient descent
 [2016-07-29 Fri 16:03]
-Start with some initial guesses for \theta_{0} and \theta_{1}, then keep changing until we hopefully end up at a minimum. Imagine starting on a hill, looking all around and then taking a baby step to try and get downhill as quickly as possible, then repeat. Depending on where you start you can get to a completely different endpoint. 
+Start with some initial guesses for \theta_{0} and \theta_{1}, then keep changing until we hopefully end up at a minimum. Imagine starting on a hill, looking all around and then taking a baby step to try and get downhill as quickly as possible, then repeat. Depending on where you start you can get to a completely different endpoint. Key is simultaneous update.
+** Gradient descent -- Intuition
+[2016-07-29 Fri 16:14]
+Algorithm has two main pieces. \alpha, which is the learning rate, and the derivative. Derivative - finding the slope of the tangent line, so you're adding or subtracting a small amount to the current \theta_{i}, to move a little in the right direction. Example - one variable with a parablola. If \alpha (learning rate) is too small, then gradient descent takes a long time to run. If it's too big then you can overshoot the minimum, and fail to converge (or even diverge). If you have \theta_{i} already at a local optima, then the tangent line is a straight line, slope is 0 and the step term drops away. As you get closer to local optima the slope of the tangent line gets smaller as well, so your steps start getting smaller and smaller as you approach, which is why you can get away with a fixed learning rate.
+** Gradient Descent for Linear Regression
+[2016-08-01 Mon 09:35]
+Convert J(\theta_{0}, \theta_{1}) to the squared error cost function. Convex function for J(\theta_{0}, \theta_{1}). ``Batch'' gradient descent -- looking at all the training examples. Normal equation method.
+* Quiz
+[2016-08-01 Mon 09:50]
+4/5 - got the fourth question wrong.
+
+
