@@ -39,3 +39,34 @@ Normal equation - disadvantages: calculating (X^{T} * X)^{-1} is roughly an orde
 *** Normal Equation Noninvertibility
 [2016-08-03 Wed 11:08]
 What if you have X^{T}*X is a case of a singular/degenerate matrix that is non-invertable? Rare, but at least in Octave pinv will handle this for you. See this in cases where you have either redundant (linearly dependent) features (e.g. size in both m^{2} and ft^{2}), or if you  have more features than you have examples (m < n), in which case you can either delete features or regularize.
+** Week 2 quiz
+[2016-08-03 Wed 11:47]
+1 - Mean is 81. 
+2 - α=0.3 is an effective choice of learning rate.
+3 - X is 28×5, y is 28×1, θ is 5×1
+4 - Gradient descent, since (XTX)−1 will be very slow to compute in the normal equation.
+5 - It speeds up gradient descent by making it require fewer iterations to get to a good solution.
+
+Got the first question wrong, rest right (80%). Calculated SD for denominator, suspect should have used max(x) - min(x), which would have given 0.32, may retake?
+** Octave tutorials
+[2016-08-03 Wed 11:56]
+Setting prompt -- PS1(). Semicolon suppressing output at end of a line. % for quote character.
+
+Matrix - A = [1 2; 3 4; 5 6] generates a 3 x 2 matrix. Row vector - V = [1 2 3], column vector - V = [1; 2; 3]. Use colon to denote ranges, can make second arguement step and third stop, or start and stop. ones() to generate a matrix of all ones, zeros() to generate one of all zeros, rand() to generate a random matrix, randn() to use gaussian distribution, eye() to generate identity matrix. who() to show what things are loaded in the environment. whos() to show more detail (type info, etc.). Need to use parentheses to refer to matrix elements, not square brackets.
+
+'.' to denote element-wise operations -- A .* B multiplies A(1 1) with B(1 1), A(1,2) with B(1,2), ....
+
+''' to identify matrix transpose -- A'
+
+for i=1:10,
+   v(i) = 2^i;
+end
+
+if i == 6,
+  break;
+end
+
+Define functions -- create a file named "function.m", then Octave will use that. Octave search path - how to set this in the shell?
+
+Arrays start at 1, not 0.
+
