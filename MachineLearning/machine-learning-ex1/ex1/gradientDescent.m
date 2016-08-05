@@ -17,11 +17,13 @@ for iter = 1:num_iters
     %       of the cost function (computeCost) and gradient here.
     %
 
-
-
-
-
-
+    ##  X * theta - m x n * n x 1 matrix, giving m x 1 matrix
+    ##  (X * theta) - y gives an m x 1 matrix
+    ##  (X * theta) - y)' * X gives 1 x m * m x n, giving 1 x n
+    ##  ((X * theta) - y)' * X)' gives n x 1 matrix
+    
+    newtheta = theta - alpha * (1/m * ((X * theta) - y)' * X)'
+    theta = newtheta
 
     % ============================================================
 
