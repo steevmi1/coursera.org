@@ -1,0 +1,21 @@
+* Week 03
+[2016-08-05 Fri 16:15]
+** Classification and Representation
+[2016-08-05 Fri 16:15]
+*** Classification
+[2016-08-05 Fri 16:15]
+What is classification -- spam/not spam, fraud detection, tumor malignancy. y can take on two values, 0 or 1. Can extend to multi-class classification problems, where y can take on more than yes/no types of values. Can set thresholds -- if > 0.5 then set to 1, < 0.5 set to 0. Problem of extreme outliers for linear regression giving a worse hypothesis. Use logistic regression to ensure that the output is between 0 and 1.
+*** Hypothesis Representation
+[2016-08-05 Fri 16:16]
+h_{0}(x) = g(\theta^{T}x), where g(z) = \frac{1}{1 + e^{-z}}. g(z) is the sigmoid or logistic function. Plot of this has asymptotes of 1 as \limit{Z} approaches \infinity and 0 as \limit{z} approaches -\infinity. This turns h_{0}(x) into the probability that y = 1 on input x. Probability of y = 0 becomes 1 - P(y = 1|x, \theta). 
+*** Decision Boundary
+[2016-08-05 Fri 16:16]
+For logistic regression, you have y = 1 whenever z >= 0, so this means that \theta^{T}x >=0 is the positive case. Conversely, y = 0 whenever \theta^{T}x < 0. Decision boundary - line where you cross from negative hypothesis to positive. Non-linear decision boundaries - add more complex equations (square terms).
+** Logistic Regression Model
+[2016-08-05 Fri 16:46]
+*** Cost Function
+[2016-08-05 Fri 16:47]
+*** Simplified Cost Function and Gradient Descent
+[2016-08-05 Fri 16:47]
+*** Advanced Optimization
+[2016-08-05 Fri 16:47]
