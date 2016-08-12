@@ -15,7 +15,28 @@ For logistic regression, you have y = 1 whenever z >= 0, so this means that \the
 [2016-08-05 Fri 16:46]
 *** Cost Function
 [2016-08-05 Fri 16:47]
+If we just use the logistic function, then looking at graph for J(\theta) is non-convex, has many local optima and not guaranteed to converge to the global minimum. Change the cost function to be -log(h_{\theta}(x)) if y = 1, and -log(1 - h_{\theta}(x)) if y = 0. Looking at graphs, approaches \inf asymptotically for the y = 0 and y = 1 cases.
 *** Simplified Cost Function and Gradient Descent
 [2016-08-05 Fri 16:47]
+Cost(h_{\theta}(x), y) = -y log(h_{\theta}(x)) - (1 - y) log(1 - h_{\theta}(x)), more efficient way to represent this. Can see how this works by setting y to 1 or 0 and see the appropriate term drop out. How to plug this into gradient descent -- cosmetically looks the same, but the h_{\theta}(x) has changed from \theta^{T} * x to \frac{1}{1 + e^{\theta^{T} * x}}.
 *** Advanced Optimization
 [2016-08-05 Fri 16:47]
+Given J(\theta) and \frac{\partial}{\partial \theta_{j}}, can use this in other algorithms besides gradient descent. Conjugate gradient, [[https://en.wikipedia.org/wiki/Broyden%25E2%2580%2593Fletcher%25E2%2580%2593Goldfarb%25E2%2580%2593Shanno_algorithm][BFGS]], [[https://en.wikipedia.org/wiki/Limited-memory_BFGS][L-BFGS]].
+** Multiclass Classification
+[2016-08-12 Fri 14:48]
+*** Multiclass classification: one-vs.-all
+[2016-08-12 Fri 14:48]
+What is multiclass classification? E-mail tagging (work, family, etc.), weather (sunny, cloudy, rain, snow). Go through and turn everything into that category and "everything else". Then, after constructing your i classifiers run new input x through all and see which one is best fit.
+** Regularization
+[2016-08-12 Fri 14:54]
+*** The problem of overfitting
+[2016-08-12 Fri 15:19]
+``underfit'' or ``high-bias''. ``overfit'' or ``high variance''. Overfitting -- fits the training set very well, but doesn't generalize to new examples well. Many features but not a lot of training data. Methods to deal with this include feature reduction, model selection algorithms. Alternatively, regularization is keeping all the features but reducing the magnitude of the parameters \theta.
+*** Cost function
+[2016-08-12 Fri 15:27]
+Take cost function and modify it so that some of the parameters are small, which could make a 4th order polynomial into a second order one as two terms go close to zero. Add term to the end -- \lambda * \sum{i = 1}{m} \theta_{j}^{2}. If you make \lambda too large, then you drive all the terms to effectively 0, and you get a flat line (aka underfit).
+*** Regularized Linear Regression
+[2016-08-12 Fri 15:36]
+*** Regularized Logistic Regression
+[2016-08-12 Fri 15:37]
+
