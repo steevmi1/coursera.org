@@ -7,10 +7,58 @@ The Neural Network programming exercise will be one of the more challenging ones
 [2016-08-22 Mon 15:52]
 *** Cost Function
 [2016-08-22 Mon 15:53]
+L - total number of layers in neural network. s_{l} is the number of units (not including bias) in each layer. K - output classes. Looking at cost function, for one vs. all this becomes
+
+J(\Theta) = - (1 / m) \Bigg[ \sum_{i = i}^{m} \sum_{k = 1}^{K} y_{k}^{(i)}log(h_{\Theta}(x^{(i)}))_{k} + (1 - y_{k}^{(i)})log(1 - (h_{\Theta}(x^{(i)}))_{k}) \Bigg] + \frac{\lambda}{2m} \sum_{l = 1}^{L - 1} \sum_{i = i}^{s_{l}} \sum_{j = 1}^{s_{l} + 1} (\Theta_{ji}^{l})^{2}
+
+Quiz -- not entirely clear what they were asking for? ``What do we need to supply code to compute (as a function of \Theta)'' 
+
 *** Backpropagation Algorithm
 [2016-08-22 Mon 15:53]
+Gradient computation. Given a neural network with one training example (x, y). Layer 1 - three nodes. Layer 2 - 5 nodes. Layer 3 - 5 nodes. Layer 4 (output layer) - 4 nodes.
+
+a^{(1)} = x
+
+z^{(2)} = \Theta^{(1)} a^{(1)}
+a^{(2)} = g(z^{(2)})
+
+%%  Add in the bias terms for the next layer (a_{0}^{(2)})
+
+z^{(3)} = \Theta^{(2)} a^{(2)}
+a^{(3)} = g(z^{(3)})
+
+%%  Add in the bias terms for the next layer (a_{0}^{(3)})
+
+z^{(4)} = \Theta^{(3)} a^{(3)}
+
+a^{(4)} = h_{\Theta}(x) = g(z^{(4)})
+
+Backpropagation algorithm -- calculate the error (\delta_{j}^{(l)}) of each node j in layer l. So for our training example, \delta_{j}^{(4)} = a_{j}^{(4)} - y_{j}. Can think of this as vectorized, drop the subscripts. From this, we can then calculate the error moving backwards through the neural network.
+
+\delta^{(3)} = (\Theta^{(3)})^{T} \delta^{(4)} .* g\textprime(z^{(3)})
+\delta^{(2)} = (\Theta^{(2)})^{T} \delta^{(3)} .* g\textprime(z^{(2)})
+
+g\textprime calculated as a^{(3)} .* (1 - a^{(3)}).
+
+To move to the more general case:
+
+for i = 1 to m
+  a^{(i)} = x^{(i)}
+  %%  Forward propagation to calculate a^{(i + 1)}
+  \delta^{(L)} = a^{(L)} - y^{(i)}
+  %%  Finish calculating backpropagation deltas
+  \Delta_{ij}^{(l)} := \Delta_{ij}^{(l)} + a_{j}^{(l)} \delta_{i}^{(l + 1)}
+
+After looping through all m training examples
+
+D_{ij}^{(l)} = \frac{1}{m} \Delta_{ij}^{(l)} + \lambda \Theta_{ij}^{(l)} if j \ne 0
+D_{ij}^{(l)} = \frac{1}{m} \Delta_{ij}^{(l)} if j \eq 0
+
+\Delta is equivalent to J(\Theta), D is equivalent to partial deriv. of J(\Theta).
+
 *** Backpropagation Intuition
 [2016-08-22 Mon 15:53]
+Look more at the mechanical steps of backpropagation, and see what it is doing. Backprop really just a weighted sum of the errors in the step before. 
 ** Backpropagation in Practice
 [2016-08-22 Mon 15:52]
 *** Implementation Note: Unrolling Parameters
