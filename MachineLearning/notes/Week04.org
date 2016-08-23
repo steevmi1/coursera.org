@@ -1,0 +1,28 @@
+* Week 04
+[2016-08-15 Mon 09:42]
+Welcome to week 4! This week, we are covering neural networks. Neural networks is a model inspired by how the brain works. It is widely used today in many applications: when your phone interprets and understand your voice commands, it is likely that a neural network is helping to understand your speech; when you cash a check, the machines that automatically read the digits also use neural networks.
+** Motivations
+[2016-08-15 Mon 09:42]
+*** Non-linear hpyotheses
+[2016-08-15 Mon 09:42]
+*** Neurons and the Brain
+[2016-08-15 Mon 09:42]
+** Neural Networks
+[2016-08-15 Mon 09:42]
+*** Model Representation I
+[2016-08-15 Mon 09:43]
+Relationship to actual neurons -- accept inputs, do something, send outputs. x_{0} -- bias unit, equal to 1. \theta are usually called ``weights'' in NN terminology. Hidden layer. a_{i}^{j} -- ``activation'' of unit i in layer j. \theta^{j} -- matrix of weights controlling function mapping from layer j to layer j+1. Dimensions of \theta^{j} - s_{j+1} x (s_{j} + 1). 
+*** Model Representation II
+[2016-08-15 Mon 09:43]
+Forward propagation. a^{(2)} is all the a's for layer 2. a_{1}^{(2)} is the a_{1} in the second layer.
+** Applications
+[2016-08-15 Mon 09:42]
+*** Examples and Intuitions I
+[2016-08-15 Mon 09:43]
+Use of neural networks to compute logical AND and OR functions.
+*** Examples and Intuitons II
+[2016-08-15 Mon 09:43]
+Question about NOT x1 and NOT x2. I don't see how 10/-20/-20 works, it seems like 30/-20/-20 would be a better choice? No, because the AND doesn't distribute that way.
+*** Multiclass Classifications
+[2016-08-15 Mon 09:43]
+

@@ -1,22 +1,29 @@
-* Lesson 1
+* Week 01
+[2016-08-15 Mon 09:45]
+Welcome to Machine Learning! This week, we introduce the core idea of teaching a computer to learn concepts using data—without being explicitly programmed.
+
+We are going to start by covering linear regression with one variable. Linear regression predicts a real-valued output based on an input value. We discuss the application of linear regression to housing price prediction, present the notion of a cost function, and introduce the gradient descent method for learning.
+
+We’ll also have optional lessons that provide a refresher on linear algebra concepts. Basic understanding of linear algebra is necessary for the rest of the course, especially as we begin to cover models with multiple variables. If you feel confident in your understanding of linear algebra, feel free to take a break or help other students out in the forums.
+** Lesson 1
 [2016-07-29 Fri 15:11]
-** Supervised learning
+*** Supervised learning
 [2016-07-29 Fri 14:35]
 Supervised learning -- means that the right answers have been given. Task is to then take new input and figure out the right price.
-*** regression
+**** regression
 [2016-07-29 Fri 14:39]
 ontinuous valued problem.
-*** classification
+**** classification
 [2016-07-29 Fri 14:39]
 Discrete valued output.
-** Unsupervised learning
+*** Unsupervised learning
 [2016-07-29 Fri 14:45]
 Have a data set, and asked to find structure in it. Use of octave for class exercises. 
-*** Clustering algorightms
+**** Clustering algorightms
 [2016-07-29 Fri 14:46]
-* Lesson 2
+** Lesson 2
 [2016-07-29 Fri 15:12]
-** Model representation
+*** Model representation
 [2016-07-29 Fri 15:36]
 Training set. x's - input variables. y's - output variables. m - number of training examples. (x, y) to denote one training example. (x^(i), y^(i)) to refer to the ith training example.
 
@@ -25,27 +32,27 @@ Training set -> learning algorithm -> hypothesis
 size of house -> hypothesis -> estimated price
 
 hypothesis maps x's to y's. Univariate linear regression - linear regression with one variable.
-** Cost function
+*** Cost function
 [2016-07-29 Fri 15:36]
 h_{\theta}(x) = \theta_{0} + \theta_{1} * x as our univariate linear regression function. How do we figure out what the various {\theta}s are? Minimization problem, make the difference between h_{\theta}(x) and y (the real result) as small as possible. Cost function J(\theta_{0}, \theta_{1}) = \frac{1}{2m} \sum_{i = i}^{m}(h_{\theta}(x)^(i) - y^(i))^{2} -- squared error cost function. 
-** Cost function -- Intuition I
+*** Cost function -- Intuition I
 [2016-07-29 Fri 15:44]
 Case where we set \theta_{0} to 0 -- solutions that pass through the origin. For now, assume our data set is (1,1), (2,2), (3,3). Have plot for our (x, y) data, but what if we start to plot (\theta_{1}, J(\theta_{1}))? Get a parabola, min at (0, 1).
-** Cost function -- Intuition II
+*** Cost function -- Intuition II
 [2016-07-29 Fri 15:55]
 Contour plots. Now, what if we don't look at just one parameter, but look at two parameters? 3D surface plot. \theta_{0}, \theta_{1} are the x/y, and z becomes J(\theta_{0}, \theta_{1}). Contour plots are a 2D representation.
-* Lesson 3
+** Lesson 3
 [2016-07-29 Fri 16:03]
-** Gradient descent
+*** Gradient descent
 [2016-07-29 Fri 16:03]
 Start with some initial guesses for \theta_{0} and \theta_{1}, then keep changing until we hopefully end up at a minimum. Imagine starting on a hill, looking all around and then taking a baby step to try and get downhill as quickly as possible, then repeat. Depending on where you start you can get to a completely different endpoint. Key is simultaneous update.
-** Gradient descent -- Intuition
+*** Gradient descent -- Intuition
 [2016-07-29 Fri 16:14]
 Algorithm has two main pieces. \alpha, which is the learning rate, and the derivative. Derivative - finding the slope of the tangent line, so you're adding or subtracting a small amount to the current \theta_{i}, to move a little in the right direction. Example - one variable with a parablola. If \alpha (learning rate) is too small, then gradient descent takes a long time to run. If it's too big then you can overshoot the minimum, and fail to converge (or even diverge). If you have \theta_{i} already at a local optima, then the tangent line is a straight line, slope is 0 and the step term drops away. As you get closer to local optima the slope of the tangent line gets smaller as well, so your steps start getting smaller and smaller as you approach, which is why you can get away with a fixed learning rate.
-** Gradient Descent for Linear Regression
+*** Gradient Descent for Linear Regression
 [2016-08-01 Mon 09:35]
 Convert J(\theta_{0}, \theta_{1}) to the squared error cost function. Convex function for J(\theta_{0}, \theta_{1}). ``Batch'' gradient descent -- looking at all the training examples. Normal equation method.
-* Quiz
+** Quiz
 [2016-08-01 Mon 09:50]
 4/5 - got the fourth question wrong.
 
