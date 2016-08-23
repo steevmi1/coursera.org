@@ -30,8 +30,12 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
+mypred = zeros(size(X, 1), 1);
+mypred = sigmoid(X * all_theta');
 
+%%size(mypred);
 
+[a, p] = max(mypred, [], 2);
 
 
 
