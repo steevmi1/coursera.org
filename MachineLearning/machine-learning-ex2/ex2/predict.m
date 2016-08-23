@@ -16,7 +16,9 @@ p = zeros(m, 1);
 %
 
 
-
+mypred = zeros(m, 1);
+mypred = sigmoid(X * theta);
+p = mypred >= 0.5;
 
 
 

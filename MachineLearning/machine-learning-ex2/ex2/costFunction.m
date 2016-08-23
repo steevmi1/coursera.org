@@ -20,12 +20,12 @@ grad = zeros(size(theta));
 % Note: grad should have the same dimensions as theta
 %
 
+%%  Spent a lot of time before I figured out that I needed to use ".*". Interestingly,
+%%  I also get the same answer if I use
+%%    sum(-y' * log(sigmoid(X*initial_theta)) - (1 - y)' * log(sigmoid(1 - X*initial_theta)))
+J = (1 / m) * sum(-y .* log(sigmoid(X*theta)) - (1 - y) .* log(1 - sigmoid(X*theta)))
 
-
-
-
-
-
+grad = (1 / m) * ((sigmoid(X * theta) - y)' * X)
 
 % =============================================================
 
