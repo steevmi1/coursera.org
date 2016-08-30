@@ -62,15 +62,70 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+%%  num_labels is K, so this is the inner loop index
+%%m = size(y);
+%%X = [ones(m, 1) X];
 
+%%  So for every element in the training set, calculate the neural network
+%%  outputs, as this is our h_{\Theta}. This gives us a num_labels dimensional
+%%  vector for an output. Ultimately, we want to calculate the sum for each
+%%  position in the vector.
 
+%%  Does this mean that for each y in our outputs, we need to turn this into a
+%%  num_labels-sized vector, with the index for y(i) set to 1?
 
+for i = 1:m
+  yvec = zeros(num_labels, 1);
+  yvec(y(i)) = 1;
+  d3 = zeros(num_labels, 1);
+  d1 = zeros(m, 1);
+  %%  From backpropagation section in ex4.pdf, moving this here
+  a1 = [1 X(i,:)];
+  z2 = a1 * Theta1';
+  a2 = sigmoid(z2);
+  a2 = [1 a2];
+  z3 = a2 * Theta2';
+  a3 = sigmoid(z3);
+  
+  %%  Now we can maybe compute our cost?
+  J = J + (1 / m) * sum(-yvec .* log(a3') - (1 - yvec) .* log(1 .- a3'))';
+  
+  %%  Compute backpropagation
+  d3 = a3' - yvec;
+  %%  So now, this next line fails because we try to do element-wise mult
+  %%  between a 26x1 vector and a 25x1 vector.
+  %%  So I *think* what needs to happen is to add back in the bias to the
+  %%  output from the sigmoid gradient, then transpose and that turns it into
+  %%  a 1x26 matrix * a 26 x 1 matrix. Then, strip out the basis to turn it
+  %%  into a 1x25 one.
+  d2 = Theta2' * d3 .* [1 sigmoidGradient(z2)]';
+  d2 = d2(2:end);
+  %%  Now we have a 1 x 25 matrix. a1 is a 1 x 401 matrix, so d2' * a1 gets us
+  %%  back to a 25 x 401 matrix (our original Theta1).
+  
+  Theta1_grad = Theta1_grad + d2 * a1;
+  Theta2_grad = Theta2_grad + d3 * a2;
+endfor;
 
+%%  There has to be a way to vectorize this, but I can't seem to guess it.
+theta1sum = 0;
+for j = 1:size(Theta1,1)
+  for k = 2:size(Theta1,2)
+    theta1sum = theta1sum + Theta1(j,k)^2;
+  endfor;
+endfor;
 
+theta2sum = 0;
+for j = 1:size(Theta2,1)
+  for k = 2:size(Theta2,2)
+    theta2sum = theta2sum + Theta2(j,k)^2;
+  endfor;
+endfor;
 
+J = J + (lambda / (2 * m)) * (theta1sum + theta2sum);
 
-
-
+Theta1_grad = (1 / m) .* Theta1_grad + [zeros(size(Theta1, 1), 1) (lambda/m) .* Theta1(:, 2:end)];
+Theta2_grad = (1 / m) .* Theta2_grad + [zeros(size(Theta2, 1), 1) (lambda/m) .* Theta2(:, 2:end)];
 
 
 

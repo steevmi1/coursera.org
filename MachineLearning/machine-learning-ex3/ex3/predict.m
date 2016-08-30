@@ -21,8 +21,17 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+%%  Pad this with ones for the bias.
+X = [ones(m, 1) X];
 
+z2 = X * Theta1'; %%  Flip Theta1 to make matrix dims work
+a2 = sigmoid(z2); %%  Make our prediction
 
+a2 = [ones(m, 1) a2];
+z3 = a2 * Theta2';
+a3 = sigmoid(z3);
+
+[vals, p] = max(a3, [], 2);
 
 
 
