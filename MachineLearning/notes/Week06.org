@@ -9,20 +9,34 @@ When you're applying machine learning to real problems, a solid grasp of this we
 [2016-08-30 Tue 12:02]
 *** Deciding What to Try Next
 [2016-08-30 Tue 12:03]
+Difference between knowing algos and understanding when and how to apply. How to improve if predictions are off? More examples, but sometimes that doesn't actually help. Smaller or larger sets of features, polynomial features, change value for \lambda. ``Gut feeling'' not always the best way to approach this. Diagnostics.
 *** Evaluating a Hypothesis
 [2016-08-30 Tue 12:03]
+Small number of features can plot points/hypothesis, but doesn't scale well. Can split data into train and test sets (70/30 split). Compute test error J_{test}(\theta). Misclassification error (0/1 error). Look at output of 1 if misclassified, 0 if classified correctly.
 *** Model Selection and Train/Validation/Test Sets
 [2016-08-30 Tue 12:03]
+Model selection - d is the degree of polynomial for model chosen. Can take all your models, compute \theta for each one, then compute test error. Problem is that this degree is not going to be a fair test, will be overly optimistic. Split data into test (60%), cross validation (20%) and training (20%). Now can compute three sets of errors, for test, cross-validation and training. Use training set to train your models, validation set to pick the model (degree of polynomial), and test to validate. Fit an extra parameter (d) to the CV data.
 ** Bias vs. Variance
 [2016-08-30 Tue 12:03]
 *** Diagnosing Bias vs. Variance
 [2016-08-30 Tue 12:03]
+High bias - underfit. High variance - overfit. Plot of error as a funciton of degree of polynomial. For training set, see a decrease as degree increases. CV error plots more like a parabola. If J_{train} and J_{cv} are high and fairly close, then you have high bias. If you have low J_{train} and J_{cv} much higher than J_{train}, then most likely overfit/high variance. 
 *** Regularization and Bias/Variance
 [2016-08-30 Tue 12:04]
+Set J_{train}, J_{cv} and J_{test} to be just the average sum of squares of errors (without the regularization term). Range of \lambdas, minimize the cost functions for training set and evaluate J_{cv}(\theta) (without regulariztion) to pick a model. Then, with that model test using the test data set.
+
+Need to look at this much more.
 *** Learning Curves
 [2016-08-30 Tue 12:04]
+Inverted curves. For high bias, J_{cv} and J_{train} are fairly close together as # of samples increases. For high variance, J_{cv} and J_{train} are pretty far apart as m goes up. When you extrapolate out, more data will help close the gap for the high variance case.
 *** Deciding What to Do Next Revisited
 [2016-08-30 Tue 12:04]
+Back to original question. More examples or smaller sets of features are solutions for high variance, additional features or adding polynomial features helps for high bias. Decreasing \lambda helps for high bias, increasing \lambda helps for high variance.
+
+Neural networks - smaller networks computationally easier, but more prone to underfitting. Larger networks have more parameters and more prone to overfitting and are computationally more expensive, but can be helped with regularization (\lambda). 
+
+How to prove the \lambda observations?
+
 ** Quiz
 [2016-08-30 Tue 12:03]
 ** Programming Assignment
