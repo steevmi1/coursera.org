@@ -1,0 +1,27 @@
+* Week 07
+[2016-09-09 Fri 14:02]
+Welcome to week 7! This week, you will be learning about the support vector machine (SVM) algorithm. SVMs are considered by many to be the most powerful 'black box' learning algorithm, and by posing a cleverly-chosen optimization objective, one of the most widely used learning algorithms today.
+
+As always, if you get stuck on the quiz and programming assignment, you should post on the Discussions to ask for help. (And if you finish early, I hope you'll go there to help your fellow classmates as well.)
+** Large Margin Classification
+[2016-09-09 Fri 14:02]
+*** Optimization Objective
+[2016-09-09 Fri 14:03]
+*** Large Margin Intuition
+[2016-09-09 Fri 14:03]
+*** Mathematics Behind Large Margin Classification
+[2016-09-09 Fri 14:03]
+** Kernels
+[2016-09-09 Fri 14:02]
+*** Kernels I
+[2016-09-09 Fri 14:03]
+*** Kernels II
+[2016-09-09 Fri 14:04]
+** SVM in Practice
+[2016-09-09 Fri 14:03]
+*** Using An SVM
+[2016-09-09 Fri 14:04]
+** Quiz
+[2016-09-09 Fri 14:03]
+** Homework
+[2016-09-09 Fri 14:03]
