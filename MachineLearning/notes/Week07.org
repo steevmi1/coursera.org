@@ -7,16 +7,63 @@ As always, if you get stuck on the quiz and programming assignment, you should p
 [2016-09-09 Fri 14:02]
 *** Optimization Objective
 [2016-09-09 Fri 14:03]
+SVM -- last of the supervised methods.
+
+Start with logistic regression. y == 1 implies h_{\theta}(x) is approximately 1 and \Theta^{T}x is >> 0, and y == 0 implies h_{\theta}(x) is approximately 0 and \Theta^{T}x is << 0.
+
+Cost function. Look at case of y == 1 and y == 0, and graph the cost function for each case. Change curve to one that is a straight line until it hits 1 on the X axis then goes flat, or goes flat to -1 then straight line. SVM cost function changes slightly, goes to
+
+min C \Big[ \sum_{i = 1}^{m} y^{(i)} cost_{1}(\Theta^{T}x^{(i)}) + (1 - y^{(i)}) cost_{0}(\Theta^{T}x^{(i)}) \Big] + \frac{1}{2} \sum_{j = i}^{m} \Theta_{j}^{2}
 *** Large Margin Intuition
 [2016-09-09 Fri 14:03]
+``Large margin classifiers''
+
+Support Vector Machines -- don't just get it barely right.
+
+If y == 1, we want \Theta^{T}x \ge 1 (not just \ge 0).
+If y == 0, we want \Theta^{T}x \le -1 (not just \lt 0).
+
+Margin - distance between decision boundary and the data points.
+
+C plays a role similar to \frac{1}{\lambda}.
 *** Mathematics Behind Large Margin Classification
 [2016-09-09 Fri 14:03]
+Vector inner product.
+
+u = \begin{bmatrix} u_{1} \\ u_{2} \end{bmatrix}, v = \begin{bmatrix} v_{1} \\ v_{2} \end{bmatrix}. What does u^{T}v equal?
+
+Length of vector u, \| \mathbf{u} \|, is \sqrt{u_{1}^{2} + u_{2}^{2}}.
+
+p is the length of the projection of \mathbf{v} onto \mathbf{u}, so 
+
+u^{T}v = p \cdot \| \mathbf{u} \|
+= u_{1}v_{1} + u_{2}v_{2}
+
+If angle of line between u and v as vectors is < 90\deg, then p > 0. If angle is > 90\deg, p < 0.
+
+Moving back to SVMs, the decision boundary is
+
+min \frac{1}{2} \sum_{j = 1}^{n} \theta_{j}^{2}. If we start with the simple case with two parameters, and set \theta_{0} to 0, then this becomes \frac{1}{2}\big(\theta_{1}^{2} + \theta__{2}^{2} \big), which can be rewritten as \frac{1}{2} \| \theta \|^{2}.
+
+When we look at decision boundary, we're looking for a minimal \theta but if we fit too tightly, that forces p to be small, which forces \| \theta \| to be large, so SVM won't pick this boundary.
 ** Kernels
 [2016-09-09 Fri 14:02]
 *** Kernels I
 [2016-09-09 Fri 14:03]
+Similarity function - exp(-\frac{\| x - l^{(i)} \|}{2\sigma^{2}}). l^{(i)} is a point selected (landmark) in the x_{1}/x_{2} plane. Similarity functino also called ``Gaussian kernels''.
+
+Now, if we look at x being close to a landmark, this makes the distance close to 0 and thus the similarity function becomes approximately 1. If x is far away from l, then this makes the similarity function become close to 0.
+
+Gives you a way to turn polynomial functions into linear ones.
 *** Kernels II
 [2016-09-09 Fri 14:04]
+How do you pick landmarks? Put landmarks at the same locations as all of the training examples. This means that now we're measuring how close an observation is to something we've already seen before.
+
+Usually add an f_{0} feature that is always 1 by convention.
+
+Parameters -- large C gives lower bias, higher variance. Smaller C gives higher bias, lower variance.
+
+\sigma^{2} - larger gives smoother variation for f_{i}, higher bias, lower variance. As \sigma^{2} gets smaller the features vary less smoothly, but have lower bias and higher variance.
 ** SVM in Practice
 [2016-09-09 Fri 14:03]
 *** Using An SVM
