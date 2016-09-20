@@ -23,8 +23,24 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
+Ceval = [0.01 0.03 0.1 0.3 1 3 10 30];
+sigmaEval = [0.01 0.03 0.1 0.3 1 3 10 30];
 
+maxError = 1000000000;
 
+for i = 1:length(Ceval)
+  for j = 1:length(sigmaEval)
+    model = svmTrain(X, y, Ceval(i), @(x1, x2) gaussianKernel(x1, x2, sigmaEval(j)));
+    predictions = svmPredict(model, Xval);
+    predictionsError = mean(double(predictions ~= yval));
+    if (maxError > predictionsError)
+      maxError = predictionsError;
+      C = Ceval(i);
+      sigma = sigmaEval(j);
+    end;
+  end;
+end;
+  
 
 
 
