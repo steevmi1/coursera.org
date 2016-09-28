@@ -36,7 +36,35 @@ Back to original question. More examples or smaller sets of features are solutio
 Neural networks - smaller networks computationally easier, but more prone to underfitting. Larger networks have more parameters and more prone to overfitting and are computationally more expensive, but can be helped with regularization (\lambda). 
 
 How to prove the \lambda observations?
+** Building a Spam Classifier
+[2016-09-28 Wed 14:39]
+*** Prioritizing What to Work On
+[2016-09-28 Wed 14:41]
+Ways to classify spam -- can choose a list of words likely to be spam. Classify as spam (y == 1) or not (y == 0). Feature vector (x) is either a 0 if the word in your dictionary appears, and 1 if it appears once or more. How to reduce error? Collect more data, look at more sophisticated features (e.g. mail routing headers), punctuation or misspellings (``med1cine''), other dictionary questions. Need to avoid fixating on any one option. 
+*** Error Analysis
+[2016-09-28 Wed 14:41]
+Start simply with algo you can implement quickly. Plot learning curves to guide you in what direction to go next (bias vs variance, etc.). (Manually) look for trends in errors from the cross-validation set, to see if you can figure out systematic errors. In this case, categorize the types of e-mails that are misclassified, and see if there's additional cues/features that we could use to classify better.
 
+Numerical evaluation (spit out a number on how well you're doing). In this case, ``stemming'' (Porter stemmer), should discount be the same as discounts? Cross-validation error.
+
+
+** Handling Skewed Data 
+[2016-09-28 Wed 14:40]
+*** Error Metrics for Skewed Classes
+[2016-09-28 Wed 14:40]
+Skewed classes -- when you have a lot more examples of one class versus another (0.50% of all cases are y == 1). Becomes much harder to calculate error and if we're improving, in this case if we just set y = 0 we can do pretty good without any learning. True positive/true negative -- accurate prediction. Predict positive when we don't (false positive) and predict negative when actually positive (false negative). Precision -- ratio of true positives to true positives plus false positives. Recall -- ratio of true positives to true positives plus false negatives.
+*** Trading off Precision and Recall
+[2016-09-28 Wed 14:40]
+Started with predicting if h_{0}(x) >= 0.5, and 0 if < 0.5, but can increase the thresholds to avoid false positives. This gives higher precision, but lower recall. On the other hand, if we want to avoid false negatives, then we lower the threshold to give higher recall at a cost of lower precision. Can plot this as a curve. How do you compare algorithms to pick? Average P + R / 2, but can be skewed by extremes (predict y == 1 all the time). Use the F score (F_{1} score). 2 * \frac{P * R}{P + R}. Gives you a value between 0 (worst case) and 1 (best case, perfect recall and perfect precision).
+** Using Large Data Sets
+[2016-09-28 Wed 14:40]
+*** Data for Machine Learning
+[2016-09-28 Wed 14:40]
+Banko and Brill study in 2001. Found over four different ML algorithms, more data gives monotonically increasing precision. ``It's not who has the best algorithm that wins, it's who has the most data.''
+
+Question -- if we go to a human with our input features (x), can a human expert predict y accurately?
+
+In cases where we have lots of parameters, it helps to ensure low bias. By then having lots of data, this helps to keep the variance low as well.
 ** Quiz
 [2016-08-30 Tue 12:03]
 ** Programming Assignment
