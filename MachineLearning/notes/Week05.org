@@ -63,12 +63,31 @@ Look more at the mechanical steps of backpropagation, and see what it is doing. 
 [2016-08-22 Mon 15:52]
 *** Implementation Note: Unrolling Parameters
 [2016-08-22 Mon 15:53]
+Now that we're working with neural networks, theta and D are now matrices and not vectors, but our functions assume that we're working with vectors.
+
+=thetaVec = [Theta1(:); Theta2(:); Theta3(:)];=
+
+Then, use =reshape()= function to get back.
 *** Gradient Checking
 [2016-08-22 Mon 15:54]
+To get slope at a point, pick two points (\Theta + \epsilon and \Theta - \epsilon), then can figure the slope using those two points as an approximation.
+
+Slope can be computed as \frac{J(\Theta + \epsilon) - J(\Theta - \epsilon)}{2 \epsilon}. \epsilon should be around 10^{-4}, otherwise run into numerical issues.
+
+Compare this to Dvec, if they're close then you're on the right track, but don't use in prod as this is computationally expensive.
 *** Random Initialization
 [2016-08-22 Mon 15:54]
+Issues if you set the \Theta weights the same, as this gives you artificial symmetry in your network. Initialize a random matrix between -\epsilon and \epsilon, this breaks symmetry.
 *** Putting it Together
 [2016-08-22 Mon 15:54]
+Pick your architecture -- input units is the dimensions of your features, output units is the number of classes. Normally use 1 hidden layer (if > 1 hidden layer, keep same # of units). The more units in the hidden layer the better, but the more units the more computationally expensive.
+
+1. Randomly initialize weights
+2. Forward propagation
+3. Cost function (J(\Theta))
+4. Backprop
+5. Use gradient checking to validate
+6. Switch to using gradient descent with backprop to minimize the cost function.
 ** Application of Neural Networks
 [2016-08-22 Mon 15:53]
 *** Autonomous Driving
