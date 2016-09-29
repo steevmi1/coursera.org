@@ -1,0 +1,52 @@
+* Week 09
+[2016-09-29 Thu 13:50]
+Hello all! I hope everyone has been enjoying the course and learning a lot! This week, we will be covering anomaly detection which is widely used in fraud detection (e.g. ‘has this credit card been stolen?’). Given a large number of data points, we may sometimes want to figure out which ones vary significantly from the average. For example, in manufacturing, we may want to detect defects or anomalies. We show how a dataset can be modeled using a Gaussian distribution, and how the model can be used for anomaly detection.
+
+We will also be covering recommender systems, which are used by companies like Amazon, Netflix and Apple to recommend products to their users. Recommender systems look at patterns of activities between different users and different products to produce these recommendations. In these lessons, we introduce recommender algorithms such as the collaborative filtering algorithm and low-rank matrix factorization.
+
+As always, if you get stuck on the quiz and programming assignment, you should post on the Discussions to ask for help. (And if you finish early, I hope you'll go there to help your fellow classmates as well.)
+** Anomaly Detection
+[2016-09-29 Thu 13:52]
+*** Density Estimation
+[2016-09-29 Thu 13:51]
+**** Problem Motivation
+[2016-09-29 Thu 13:53]
+
+**** Gaussian Distribution
+[2016-09-29 Thu 13:53]
+**** Algorithm
+[2016-09-29 Thu 13:53]
+*** Building an Anomaly Detection System
+[2016-09-29 Thu 13:51]
+**** Developing and Evaluating an Anomaly Detection System
+[2016-09-29 Thu 13:53]
+**** Anomaly Detection vs. Supervised Learning
+[2016-09-29 Thu 13:53]
+**** Choosing What Features to Use
+[2016-09-29 Thu 13:54]
+*** Multivariate Gaussian Distribution (optional)
+[2016-09-29 Thu 13:51]
+**** Multivariate Gaussian Distribution
+[2016-09-29 Thu 13:54]
+**** Anomaly Detection Using the Multivariate Gaussian Distribution
+[2016-09-29 Thu 13:54]
+** Recommender Systems
+[2016-09-29 Thu 13:51]
+*** Predicting Movie Ratings
+[2016-09-29 Thu 13:52]
+**** Problem Formulation
+[2016-09-29 Thu 13:54]
+**** Content Based Recommendations
+[2016-09-29 Thu 13:54]
+*** Collaborative Filtering
+[2016-09-29 Thu 13:52]
+**** Collaborative Filtering
+[2016-09-29 Thu 13:55]
+**** Collaborative Filtering Algorithm
+[2016-09-29 Thu 13:55]
+*** Low Rank Matrix Factorization
+[2016-09-29 Thu 13:52]
+**** Vectorization: Low Rank Matrix Factorization
+[2016-09-29 Thu 13:55]
+**** Implementation Detail: Mean Normalization
+[2016-09-29 Thu 13:55]
