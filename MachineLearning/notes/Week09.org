@@ -11,7 +11,6 @@ As always, if you get stuck on the quiz and programming assignment, you should p
 [2016-09-29 Thu 13:51]
 **** Problem Motivation
 [2016-09-29 Thu 13:53]
-
 **** Gaussian Distribution
 [2016-09-29 Thu 13:53]
 **** Algorithm
@@ -36,17 +35,65 @@ As always, if you get stuck on the quiz and programming assignment, you should p
 [2016-09-29 Thu 13:52]
 **** Problem Formulation
 [2016-09-29 Thu 13:54]
+An area where you can learn what features to use.
+
+Part of the job of a recommender system is to predict a rating for things that haven't been rated, to be able to then recommend something.
+
+r(i, j) -- 1 if user j filled in a value for item i. y(i, j) is the rating if r(i, j) is 1.
 **** Content Based Recommendations
 [2016-09-29 Thu 13:54]
+Features -- class of the movie (x1 -- 0 - 1 if a movie is romance, x2 is 0 - 1 if action, etc.).
+
+Now have a feature vector for each movie.
+
+\Theta for each user, and can use linear regression to predict for each user what their rating would be for unrated things.
+
+Problem formulation:
+r(i, j) = 1 if a user has rated a movie (0 otherwise)
+y^{(i, j)} = rating by user j on movie i (if r(i, j) = 1)
+
+\theta^{j} is the parameter vector for user j
+x^{(i)} is the feature vector for movie i
+For user j, movie i, predicted rating: (\theta^{(j)})^{T}(x^{(i)})
+
+m^{(j)} is the number of movies rated by user j
+
+To learn \theta^{j}:
+
+min_{\theta^{(j)}} \frac{1}{2} \sum_{i: r(i, j) = 1} ((\theta^{(j)})^{T} (x^{(i)}) - y^{(i, j}))^{2} + \frac{\lambda}{2} \sum_{k = 1}^{n} (\theta_{k}^{(j)})^{2}
+
+But we want to do this for all users, so this becomes
+
+min_{\theta^{(j)}} \frac{1}{2} \sum_{j = 1}^{n_{u} }\sum_{i: r(i, j) = 1} ((\theta^{(j)})^{T} (x^{(i)}) - y^{(i, j}))^{2} + \frac{\lambda}{2} \sum_{j = 1}^{n_{u}} \sum_{k = 1}^{n} (\theta_{k}^{(j)})^{2}
+
+We get a similar update for the gradient descent update equations from linear regression.
 *** Collaborative Filtering
 [2016-09-29 Thu 13:52]
 **** Collaborative Filtering
 [2016-09-29 Thu 13:55]
+Algorithm that can start to learn for itself what features that you should use.
+
+Make our theta vectors to be response from users as to what they like (e.g. theta of 0 for \theta_{0}, 5 for romance, 0 for action). Equations the same as previous section, just swapping \theta and x in the regularization terms.
+
+Randomly guess \theta, use that to estimate x, use that to estimate \theta, and repeat the cycle to refine things.
 **** Collaborative Filtering Algorithm
 [2016-09-29 Thu 13:55]
+Initialize x and \theta to small random values.
+
+Minimize cost function using gradient descent.
 *** Low Rank Matrix Factorization
 [2016-09-29 Thu 13:52]
 **** Vectorization: Low Rank Matrix Factorization
 [2016-09-29 Thu 13:55]
+Take your ratings into a matrix (Y), and this works out so that for y^{(i, j)} this is (\theta^{(j)})^{T} (x^{(i)}).
+
+Can vectorize this using low rank matrix factorization. Create X as a matrix of (x^{(i)})^{T}, and \Theta as a matrix of (\theta^{(j)})^{T}.
+
+Finding related things. Learn your feature vector x^{(i)}, then for any other movie j you want to find ||x^{(i)} - x^{(j)}|| that are small.
 **** Implementation Detail: Mean Normalization
 [2016-09-29 Thu 13:55]
+Consider case with a new users that hasn't actually rated any movies yet. Just plugging this into the equations, we just need to minimize \theta, so this becomes 0. Then, all the predicted ratings become 0 as well.
+
+Calcluate the mean rating for every movie (\mu), then use to normalize matrix Y.
+
+Learn \theta^{(j)}, x^{(i)}, then can predict but we need to add back in \mu_{i} to account for the normalization, which in effect starts the new users with the current consensus for recommendations.
