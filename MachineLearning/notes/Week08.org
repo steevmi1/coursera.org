@@ -1,0 +1,117 @@
+* Week 08
+[2016-09-29 Thu 09:40]
+Hello all! I hope everyone has been enjoying the course and learning a lot! This week, you will be learning about unsupervised learning. While supervised learning algorithms need labeled examples (x,y), unsupervised learning algorithms need only the input (x). You will learn about clustering—which is used for market segmentation, text summarization, among many other applications.
+
+We will also be introducing Principal Components Analysis, which is used to speed up learning algorithms, and is sometimes incredibly useful for visualizing and helping you to understand your data.
+
+As always, if you get stuck on the quiz and programming assignment, you should post on the Discussions to ask for help. (And if you finish early, I hope you'll go there to help your fellow classmates as well.)
+** Clustering
+[2016-09-29 Thu 09:41]
+*** Unsupervised Learning: Introduction
+[2016-09-29 Thu 09:41]
+Supervised learning -- have a labeled training set, trying to find a way to predict future sets. With unsupervised learning, trying to find patterns or structure in the data, but don't have labeling. Covers things like market segmentation, social network analysis, astronomical data analysis.
+***  K-Means Algorithm
+[2016-09-29 Thu 09:41]
+K-means most popular algo for unsupervised clustering.
+
+Pick two points (centroids). Pass 1, cluster assignment step, assign all points to the nearest of the two points. Then pass 2, find mean of points assigned to centroid, and move the centroid to this position. Then, go back to step one and reassign the points. Then, keep repeating move and assign steps until it stops changing.
+
+In more detail, have K centroids \mu_{1}, \mu_{2}, ..., \mu_{K} randomly selected. Then the assignment step involves going through each data point (x^{(i)}), and calculating ||x^{(i)} - \mu_{k}||^{2}, and assigning x^{(i)} to the centroid that minimizes this value (c^{(i)}). Second step then sets \mu_{k} to the average of all the points assigned to it. If you have an empty centroid typically will just eliminate it, but if you need to have a certain number of centroids then you'd reinitialize.
+
+Can use k-means on non-disperse sets of data (e.g. market segmentation).
+*** Optimization Objective
+[2016-09-29 Thu 09:41]
+Optimization objective/cost function.
+
+Have c^{(i)}, which is the index of cluster (1, 2, ..., K) to which example x^{(i)} currently belongs.
+Have \mu_{k}, which is cluster centroid k
+Add in \mu_{c^{(i)}}, which is the cluster centroid to which example x^{(i)} has been assigned.
+
+If x^{(i)} is assigned to centroid 5, then c^{(i)} is 5, and \mu_{c^{(i)}} is \mu_{5}.
+
+So for k-means, our optimization objective becomes
+J(c^{(1)}, ..., c^{(m)}, \mu_{1}, ..., \mu_{K}) = \frac{1}{m} \sum_{i = i}^{m} ||x^{(i)} - \mu_{c^{(i)}}||^{2}
+
+Looking to find c^{(i)} and \mu_{k} to minimize this. Cost function is also called the distortion function. The first step minimizes the c variables while holding mu fixed, the second step minimizes mu while holding c fixed.
+*** Random Initialization
+[2016-09-29 Thu 09:41]
+First step is to randomly initialize the first set of centroids.
+
+Want K < number of training examples we have. Randomly pick K training examples, and set our first centroids so that the land right on top of the random examples. Can run into local optima with this method. One way to work around this is by running multiple times, then pick the one that gives the lowest cost function. Works well for small number of clusters. 
+*** Choosing the Number of Clusters
+[2016-09-29 Thu 09:42]
+Not really a good way to do this automatically. Typically choose this by hand. Visually, can be ambiguous as to how many clusters that you see. Elbow method -- run K-means with a varying number of clusters, plot versus cost function, and look for ``elbow'' where the distortion starts to slow down in how much it decreases between runs. Problem is that often you can get curves that don't give you a clear elbow to pick.
+
+Sometimes need to evaluate the number of clusters based on how it does for some downstream purpose. 
+** Dimensionality Reduction
+[2016-09-29 Thu 09:42]
+*** Motivation
+[2016-09-29 Thu 09:43]
+**** Motivation I: Data Compression
+[2016-09-29 Thu 09:42]
+Compression not just about saving resources (space, memory), but can also speed up algorithms.
+
+If you have 100s or 1000s of features, becomes hard to keep track of what you have. If one set of data has a dimension in inches, and other in centimetres. Example, projecting 2D data onto a line, reducing from 2 to 1. For 3D data, maybe we can project the data onto a plane.
+**** Motivation II: Visualization
+[2016-09-29 Thu 09:42]
+If you have a large dimensional data set, how do you plot this?
+
+Often, when you reduce it's open to interpretation what the reduced dimensionality actually means.
+*** Principal Component Analysis
+[2016-09-29 Thu 09:42]
+**** Principal Component Analysis Problem Formulation
+[2016-09-29 Thu 09:43]
+Most common method for reducing dimensionality. Project data onto a line, minimize the distance of the points to the line. Should scale before we do this. Looking in general to find a set of k vectors onto which to project the data to reduce the dimensions. Looks like linear regression, but not really related to it. Linear regression you're trying ultimately to predict y, which isn't what you're looking to do with PCA. Also going at the line slightly differently.
+**** Principal Component Analysis Algorithm
+[2016-09-29 Thu 09:43]
+Start with mean normalization, then optionally feature scaling. PCA needs to compute the vectors (u_{1}, u_{2}, ...) and then the points when you map your data points to the vectors.
+
+Calculate covariance matrix, then compute eigenvectors of the matrix (singular value decomposition in Octave as it's slightly more numerically stable).
+
+\Sigma = \frac{1}{m} \sum_{i = i}^{n} (x^{(i)}) (x^{(i)})^{T}
+
+In Octave, svd function
+
+=[U, S, V] = svd(Sigma);=
+
+\Sigma should be an n x n matrix.
+
+Take the first k vectors from the U matrix (also n x n).
+
+Reduction is calcuated by taking the U_{reduce} matrix (n x k), transpose, and multiply by x.
+
+In Octave:
+
+=Sigma = (1/m) * x' * x;=
+=[U, S, V] = svd(Sigma);=
+=Ureduce = U(:,1:k);=
+=z = Ureduce' * x;=
+*** Applying PCA
+[2016-09-29 Thu 09:43]
+**** Reconstruction from Compressed Representation
+[2016-09-29 Thu 09:43]
+If you have the reduced values, how do you get back to original values? =x_{approx} = U_{reduce} * z=
+**** Choosing the Number of Principal Components
+[2016-09-29 Thu 09:44]
+How do you choose k (how many components to reduce down to)?
+
+Average squared projection error -- \frac{1}{m} \sum_{i = i}^{m} || x^{(i)} - x_{approx}^{(i)}||^{2}
+Total variation in the data -- \frac{1}{m} \sum_{i = i}^{m} ||x^{(i)}||^{2}
+
+Pick ratio of projection error to total variation, pick to minimize this (how much of the variance did we keep).
+
+In Octave, S is an n x n matrix from svd that's only got entries along the diagonal and zero otherwise, so for a given k we can calculate this by
+
+1 - \frac{\sum_{i = i}^{k} S_{ii}}{\sum_{i = 1}^{n} S_{ii}}} \le 0.01
+
+Now, we just pick the smallest value for k that gives us the best variance.
+**** Advice for Applying PCA
+[2016-09-29 Thu 09:44]
+Mappings should be done with the training set. Once you figure out the transform, you can run this mapping on the cross-validation and test sets.
+
+Compression -- choose k by % of variance to retain. For visualization, need to move to k == 2 or k == 3.
+
+Don't use this to reduce features to help fix overfitting.
+
+Should always ask at start ``what about doing the project without PCA?'' Run through without PCA, see if it works, then if not consider PCA.
+
