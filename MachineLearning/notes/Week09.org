@@ -11,18 +11,47 @@ As always, if you get stuck on the quiz and programming assignment, you should p
 [2016-09-29 Thu 13:51]
 **** Problem Motivation
 [2016-09-29 Thu 13:53]
+Example -- aircraft engines coming off of the line, generate a set of features (heat, vibration, etc.). For new engines, do their features look OK, or are they an anomaly that should be looked at?
+
+Density estimation, then calculate p(x_{test}) < \epsilon and flag as an anomaly, and p(x_{test}) \ge \epsilon then pass.
+
+Fraud detection -- number of times logging in, number and types of pages visited, and so on.
 **** Gaussian Distribution
 [2016-09-29 Thu 13:53]
+Gaussian distribution, mean \mu and variance \sigma^{2}.
+
+Gaussian distribution formulation, p(x; \mu, \sigma^{2}). As sigma goes down, peak for the curve goes higher (the area under the curve needs to still integrate to 1), as it inreases the curve gets flatter and fatter.
+
+\mu is the mean of your data points. \sigma^{2} is the average of the square differences of the data to \mu.
 **** Algorithm
 [2016-09-29 Thu 13:53]
+Given a training set of m features, assume the p(x) = p(x_{1}; \mu_{1}, \sigma_{1}^{2}) * ... * p(x_{m}; \mu_{m}, \sigma_{m}^{2})
+
+Anomaly detection algorithm:
+1. Choose features x_{i} that indicate anomalous examples.
+2. Fit parameters \mu_{n}, \sigma_{n}^{2}
+3. Then, given a new example x calculate p(x)
 *** Building an Anomaly Detection System
 [2016-09-29 Thu 13:51]
 **** Developing and Evaluating an Anomaly Detection System
 [2016-09-29 Thu 13:53]
+The importance of real-number evaluation -- would be good to have some way to evaluate our algorithm, training set of normal and anomalous data). Training set that should be on average good/normal, cross-validation and test sets can have some anomalous data. 
+
+Fit model to training set, evaluate cross-validation. Metrics for this -- true and false positive/negatives, precision/recall, F_{1} score. Choose \epsilon based on CV set.
 **** Anomaly Detection vs. Supervised Learning
 [2016-09-29 Thu 13:53]
+*Anomaly detection* -- small # of positive examples, large number of negative ones. Many different types of anomalies, so it's hard to learn from given how few examples there are.
+
+*Supervised learning* -- large # of positive and negative examples. Many positive examples so an algorithm can learn them.
+
+Over time, if you get enough examples then can go from anomaly detection to supervised learning.
 **** Choosing What Features to Use
 [2016-09-29 Thu 13:54]
+Is the data gaussian? Plot it, maybe transform if the histogram doesn't look like a gaussian distribution.
+
+Error analysis procedure.
+
+Add new features (e.g. CPU load / network traffic).
 *** Multivariate Gaussian Distribution (optional)
 [2016-09-29 Thu 13:51]
 **** Multivariate Gaussian Distribution
