@@ -1,0 +1,20 @@
+* Week 10
+[2016-09-30 Fri 13:53]
+Welcome to week 10! This week, we will be covering large scale machine learning. Machine learning works best when there is an abundance of data to leverage for training. With the amount data that many websites/companies are gathering today, knowing how to handle ‘big data’ is one of the most sought after skills in Silicon Valley.
+** Gradient Descent with Large Datasets
+[2016-09-30 Fri 13:54]
+*** Learning with Large Datasets
+[2016-09-30 Fri 13:54]
+
+*** Stochastic Gradient Descent
+[2016-09-30 Fri 13:54]
+*** Mini-Batch Gradient Descent
+[2016-09-30 Fri 13:54]
+*** Stochastic Gradient Descent Convergence
+[2016-09-30 Fri 13:54]
+** Advanced Topics
+[2016-09-30 Fri 13:54]
+*** Online Learning
+[2016-09-30 Fri 13:54]
+*** Map Reduce and Data Parallelism
+[2016-09-30 Fri 13:55]
