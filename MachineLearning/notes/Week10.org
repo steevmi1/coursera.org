@@ -5,16 +5,31 @@ Welcome to week 10! This week, we will be covering large scale machine learning.
 [2016-09-30 Fri 13:54]
 *** Learning with Large Datasets
 [2016-09-30 Fri 13:54]
+Why do we want large data sets? Things like Netflix prize, it's not the best algorithm it's having more data.
 
+This gives computational problems. Impact on gradient descent to have 100,000,000 examples to go through for each step. Sometimes it's good to santiy check and use m = 1,000.
+
+Plot J_{train}(\theta) versus J_{cv}(\theta), and see if you're dealing with high variance (so more examples will help) or high bias (and m = 1,000 is fine).
 *** Stochastic Gradient Descent
 [2016-09-30 Fri 13:54]
+Applies to things other than just linear regression. We learned batch gradient descent, goes over all the records.
+
+New cost function. Steps - first, randomly shuffle the data set, then go through and perform gradient descent for each point in the data set. Will do a more random walk into the region where the global minimum is, not a straight-line approach to *the* minimum like batch g.d. May need to take 1 - 10 passes through the training set to get "good enough".
 *** Mini-Batch Gradient Descent
 [2016-09-30 Fri 13:54]
+Mini batch gradient descent uses b examples in each iteration (normally 2 \le b \le 100). Can speed things up with vectorized libraries when running a batch of examples versus one at a time.
 *** Stochastic Gradient Descent Convergence
 [2016-09-30 Fri 13:54]
+For batch plot J_{train}(\theta) as a function of the number of iterations. For stochastic, compute the new cost function right before we update \theta. Then, for every 1000 iterations you can plot the cost averaged over the last 1000 examples, to get a feel for how it's going. Can increase batch size or decrease learning rate to do slightly better. If the cost is increasing then you're diverging, and you need to decrease \alpha.
+
+You can also slowly decrease \alpha over time, to help to get things to converge, but this now gives you new parameters to have to fiddle with to manage the learning rate.
 ** Advanced Topics
 [2016-09-30 Fri 13:54]
 *** Online Learning
 [2016-09-30 Fri 13:54]
+Cases when you have a continuous stream of data coming in. Repeat forever: get data, update \theta with new (x, y), then throw away data and wait for next data to come in.
 *** Map Reduce and Data Parallelism
 [2016-09-30 Fri 13:55]
+Sometimes you just can't make it all work on one system. M-R, split your data set into smaller subsets of examples. For batch gradient descent, could split the sum up across multiple machines, then send back to master server to combine and finish the bgd step.
+
+Key question -- can your algorithm be expressed as computing sums over the training set?
