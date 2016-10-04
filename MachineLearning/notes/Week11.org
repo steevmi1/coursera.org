@@ -20,6 +20,15 @@ To map to text detection -- start with training set (positive and negative). Fin
 We've already done examples showing the ML for character identification.
 *** Getting Lots of Data and Artificial Data
 [2016-10-04 Tue 13:43]
+One of best ways to do ML is get a low bias algorithm, and then run large amounts of data through it. How to get large data sets? Can generate data, or take a smaller training set and then amplify it.
 
+For OCR, could just take font libraries and then use that to create large data sets.
+
+Introduce distortions (image based, sound/noise based).
+
+Be careful not to just add random noise.
+
+Key is to make sure you have a low bias classifier (plot learning curves).
 *** Ceiling Analysis: What Part of the Pipeline to Work on Next
 [2016-10-04 Tue 13:43]
+
