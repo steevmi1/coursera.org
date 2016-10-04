@@ -11,8 +11,15 @@ ML pipeline example. Focus is on how to recognize/read text in pictures. Need to
 3. Character classification
 *** Sliding Windows
 [2016-10-04 Tue 13:43]
+Start by looking at simpler example, pedestrian detection. Aspect ratio for what a person is, then use supervised learning (y = 0 and y = 1).
 
+Once trained, take your aspect window and start in top left, and analyize region. Then shift over slightly (step size), and reanalyze. Then once done, take a larger chunk and run through pipeline, and repeat this process for a few cycles.
+
+To map to text detection -- start with training set (positive and negative). Find regions where you think you have text, then find ``expansion'' regions (is one set of white pixels/found text within x pixels of another set of found text?). Now, we can look for long stretches of white where we probably have text. Now, cut out regions with text, and run second training looking at images showing segmentation between characters, and then repeat the sliding window process, now you've identified the boundaries (positive identifiers) between your letters.
+
+We've already done examples showing the ML for character identification.
 *** Getting Lots of Data and Artificial Data
 [2016-10-04 Tue 13:43]
+
 *** Ceiling Analysis: What Part of the Pipeline to Work on Next
 [2016-10-04 Tue 13:43]
