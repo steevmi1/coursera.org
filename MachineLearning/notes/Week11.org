@@ -1,0 +1,18 @@
+* Week 11
+[2016-10-04 Tue 13:42]
+Congratulations on making it to the eleventh and final week! This week, we will walk you through a complex, end-to-end application of machine learning, to the application of Photo OCR. Identifying and recognizing objects, words, and digits in an image is a challenging task. We discuss how a pipeline can be built to tackle this problem and how to analyze and improve the performance of such a system.
+** Photo OCR
+[2016-10-04 Tue 13:43]
+*** Problem Description and Pipeline
+[2016-10-04 Tue 13:43]
+ML pipeline example. Focus is on how to recognize/read text in pictures. Need to detect regions with text, then read/transcribe the text in the regions. Steps in the pipeline:
+1. Text detection
+2. Character segmentation
+3. Character classification
+*** Sliding Windows
+[2016-10-04 Tue 13:43]
+
+*** Getting Lots of Data and Artificial Data
+[2016-10-04 Tue 13:43]
+*** Ceiling Analysis: What Part of the Pipeline to Work on Next
+[2016-10-04 Tue 13:43]
