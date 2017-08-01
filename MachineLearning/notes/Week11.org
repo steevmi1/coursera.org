@@ -31,4 +31,10 @@ Be careful not to just add random noise.
 Key is to make sure you have a low bias classifier (plot learning curves).
 *** Ceiling Analysis: What Part of the Pipeline to Work on Next
 [2016-10-04 Tue 13:43]
+How to decide where to spend your time when looking at a pipeline?
+
+Start with overall accuracy of the pipeline.
+
+Start simulating what happens if a component were to be 100% accurate (feed sets that are already labeled), then evaluate the rest of the pipeline to see how the overall accuracy of the pipeline improves.
+
 
